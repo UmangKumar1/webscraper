@@ -14,12 +14,20 @@ tiers= soup.find_all("div", class_ ="main-content-row dd-game-row js-nav-row")
 for tier in tiers:
     #only for the headline
     if tier.select(".dd-header-headline"):
-        #grab the toer name
+        #grab the tier name
         tiername = tier.select(".dd-header-headline")[0].text.strip()
         #grab tier product names
         product_names = tier.select(".front-page-art-image-text")
         product_names = [prodname.text.strip() for prodname in product_names]
         tier_dict[tiername] = {"products":product_names}
+
+
+for tiername, tierinfo in tier_dict.items():
+    print(tiername)
+    print("Products: ")
+    print(" , ".join(tierinfo['products']))
+    print("\n\n")
+
 
 #Bundle Tiers
 # tier_headlines = soup.find_all("h2", class_ = "dd-header-headline")
@@ -56,9 +64,3 @@ for tier in tiers:
 #                           ]
 #              }
 # }
-
-for tiername, tierinfo in tier_dict.items():
-    print(tiername)
-    print("Products: ")
-    print(" , ".join(tierinfo['products']))
-    print("\n\n")
